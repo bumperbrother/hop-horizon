@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hop Horizon - 3D Parkour Game</title>
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="loading-screen">
+      <div class="loading-content">
+        <h1>Hop Horizon</h1>
+        <div class="progress-bar">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <p class="loading-text">Loading...</p>
+      </div>
+    </div>
+    
+    <div id="ui-container">
+      <div id="main-menu" class="screen">
+        <h1>Hop Horizon</h1>
+        <div class="menu-buttons">
+          <button id="play-button" class="menu-button">Play</button>
+          <button id="options-button" class="menu-button">Options</button>
+          <button id="credits-button" class="menu-button">Credits</button>
+        </div>
+      </div>
+      
+      <div id="tutorial-screen" class="screen hidden">
+        <div class="tutorial-content">
+          <h2>How to Play</h2>
+          <div class="controls-info">
+            <div class="control-group">
+              <h3>Movement</h3>
+              <p><span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> - Move</p>
+              <br>
+              <p><span class="key">Space</span> - Jump</p>
+              <br>
+              <p><span class="key">Space</span> (in air) - Double Jump</p>
+              <br>
+              <p><span class="key">Shift</span> - Sprint</p>
+              <br>
+              <p>Mouse - Look around</p>
+            </div>
+            <div class="control-group">
+              <h3>Objective</h3>
+              <p>Race against time to reach the end of the level.</p>
+              <br>
+              <p>Hit checkpoints to add time to your timer.</p>
+              <br>
+              <p>If the timer reaches zero, you'll have to restart.</p>
+            </div>
+          </div>
+          <button id="tutorial-continue" class="menu-button">Continue</button>
+        </div>
+      </div>
+      
+      <div id="game-ui" class="hidden">
+        <div id="timer-container">
+          <div id="timer">30.0</div>
+        </div>
+        <div id="checkpoint-counter">
+          <span id="checkpoint-count">0</span>/<span id="checkpoint-total">7</span>
+        </div>
+      </div>
+      
+      <div id="end-screen" class="screen hidden">
+        <h2>Level Complete!</h2>
+        <div class="stats">
+          <p>Final Time: <span id="final-time">00:00.000</span></p>
+          <p>Checkpoints: <span id="final-checkpoints">0/7</span></p>
+        </div>
+        <div class="menu-buttons">
+          <button id="retry-button" class="menu-button">Retry</button>
+          <button id="menu-button" class="menu-button">Main Menu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Audio Files for Hop Horizon</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 10px 0;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .download-links {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+    }
+    .download-links a {
+      display: block;
+      margin: 10px 0;
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .download-links a:hover {
+      text-decoration: underline;
+    }
+    .note {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      color: #856404;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Generate Audio Files for Hop Horizon</h1>
+    <p>This page allows you to generate placeholder audio files for the Hop Horizon game. Click the button below to generate all the required audio files.</p>
+    
+    <button id="generate-button">Generate Audio Files</button>
+    
+    <div class="download-links" id="download-links">
+      <h3>Download Links</h3>
+      <p>After generation, download links will appear here.</p>
+    </div>
+    
+    <div class="note">
+      <h3>Note:</h3>
+      <p>These are placeholder audio files generated using the Web Audio API. In a production environment, you would replace these with professionally created audio files.</p>
+      <p>After downloading, place the files in the <code>/public/assets/audio/</code> directory of your project.</p>
+    </div>
+  </div>
+  
+  <script src="generate-audio.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const generateButton = document.getElementById('generate-button');
+      const downloadLinks = document.getElementById('download-links');
+      
+      generateButton.addEventListener('click', function() {
+        // Clear previous links
+        downloadLinks.innerHTML = '<h3>Download Links</h3>';
+        
+        // Disable button during generation
+        generateButton.disabled = true;
+        generateButton.textContent = 'Generating...';
+        
+        // Generate audio files
+        generateAllAudio().then(() => {
+          // Re-enable button
+          generateButton.disabled = false;
+          generateButton.textContent = 'Generate Audio Files';
+          
+          // Collect all links
+          const links = document.querySelectorAll('a[download]');
+          
+          // Move links to the download-links div
+          links.forEach(link => {
+            // Clone the link
+            const newLink = link.cloneNode(true);
+            // Add to download links
+            downloadLinks.appendChild(newLink);
+            // Add line break
+            downloadLinks.appendChild(document.createElement('br'));
+          });
+          
+          // Remove original links
+          links.forEach(link => {
+            link.parentNode.removeChild(link);
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
